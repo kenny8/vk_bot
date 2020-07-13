@@ -1,2 +1,2 @@
 print("i full of shit")
-n = 8
+n = 10
