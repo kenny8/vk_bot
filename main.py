@@ -2,9 +2,6 @@ import vk_api
 import random
 from vk_api.longpoll import VkLongPoll, VkEventType
 
-
-
-
 def write_msg(user_id, message):
     random_id = random.getrandbits(64)  # 64 бита
     vk.method('messages.send', {'user_id': user_id, 'message': message, 'random_id':random_id})
