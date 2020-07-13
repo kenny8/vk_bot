@@ -13,14 +13,6 @@ class VkBot:
         if message.upper() == self._COMMANDS[0]:
             return f"Привет-привет, {self._USERNAME}!"
 
-        # Погода
-        elif message.upper() == self._COMMANDS[1]:
-            return self._get_weather()
-
-        # Время
-        elif message.upper() == self._COMMANDS[2]:
-            return self._get_time()
-
         # Пока
         elif message.upper() == self._COMMANDS[3]:
             return f"Пока-пока, {self._USERNAME}!"
