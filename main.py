@@ -1,5 +1,6 @@
 import vk_api
 import random
+from vk_bot import VkBot
 from vk_api.longpoll import VkLongPoll, VkEventType
 
 def write_msg(user_id, message):
@@ -16,22 +17,14 @@ vk = vk_api.VkApi(token=token)
 # Работа с сообщениями
 longpoll = VkLongPoll(vk)
 
-# Основной цикл
+print("Server started")
 for event in longpoll.listen():
-
-    # Если пришло новое сообщение
     if event.type == VkEventType.MESSAGE_NEW:
-
-        # Если оно имеет метку для меня( то есть бота)
         if event.to_me:
+            print('New message:')
+            print(f'For me by: {event.user_id}', end='')
 
-            # Сообщение от пользователя
-            request = event.text
+            bot = VkBot(event.user_id)
+            write_msg(event.user_id, bot.new_message(event.text))
 
-            # Каменная логика ответа
-            if request == "привет":
-                write_msg(event.user_id, "Хай")
-            elif request == "пока":
-                write_msg(event.user_id, "Пока((")
-            else:
-                write_msg(event.user_id, "Не поняла вашего ответа...")
+            print('Text: ', event.text)
